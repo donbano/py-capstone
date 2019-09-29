@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h2 style="position: center">{{ text.title }}</h2>
+        <div>
+            <h4>Number of mabubuting... <highlight>mga Words</highlight>: {{ text.goodWordCount }}</h4>
+            <h4>Number of masasamang... <highlight>mga Words</highlight>: {{ text.badWordCount}}</h4>
+        </div>
+        <div>
+            <h3>Content:</h3>
+            <div class="overflow-auto" aria-setsize="500px">
+                <p> {{ text.content }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

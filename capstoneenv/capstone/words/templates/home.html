@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<main role="main">
+<section class="jumbotron text-center">
+    <div class="container">
+<!--        <h1 class="jumbotron-heading">Home</h1>-->
+        <img src="{% static 'words.jpg' %}" height="300" />
+        <p class="lead text-muted">GUSTO KO:</p>
+        <div class="btn-group">
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="text/new/">Add Text</a>
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="word/new/">Add Word</a>
+        </div>
+    </div>
+</section>
+
+<div class="py-5 bg-light">
+    <div class = "container">
+
+        <h3>Mga Texts:</h3>
+
+        <div class="row">
+
+{% for text in texts.all %}
+
+            <div class ="col-md-4">
+                <div class="card mb-4 shadow-sm">
+<!--                    <img src="{{job.image.url }}" height="300">-->
+                    <div class="card-body">
+                        <p class="card-title">
+                            {{ text.title }}
+                        </p>
+                        <p>
+                            Rating:
+                            {% if text.isGood == True %}
+                            Mabubuting mga Words
+                            {% else %}
+                            GUSTO KO SUMABOG
+                            {% endif %}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'text_view' pk=text.pk %}">View</a>
+                                <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'text_edit' pk=text.pk %}">Edit</a>
+                            </div>
+                            <small class="text-muted">{{ text.created }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endfor %}
+        </div>
+    </div>
+</div>
+
+</main>
+
+{% endblock %}
+
+</body>
+</html>
